@@ -15,18 +15,20 @@ const Posts = () => {
   type stateType = {
     data: dataType[] | null;
     colSelected: string;
+    cellSelected: string;
     dataSelected: Record<string, any>[];
   };
 
   const initialState = {
     data: null,
     colSelected: '',
+    cellSelected: '',
     dataSelected: [],
   };
 
   const [state, setState] = useState<stateType>(initialState);
 
-  const { data, dataSelected, colSelected } = state;
+  const { data, dataSelected, colSelected, cellSelected } = state;
 
   useEffect(() => {
     const callApi = async () => {
@@ -67,14 +69,16 @@ const Posts = () => {
 
     if (colSelected === 'userId') {
       fetchSelected('/posts/' + cellSelected);
-    }
-
-    if (colSelected === 'id') {
+    } else if (colSelected === 'id') {
       fetchSelected('/posts/' + cellSelected + '/comments');
+    } else {
+      setState((prevState) => {
+        return { ...prevState, dataSelected: [] };
+      });
     }
 
     setState((prevState) => {
-      return { ...prevState, colSelected };
+      return { ...prevState, colSelected, cellSelected };
     });
   };
 
@@ -90,7 +94,9 @@ const Posts = () => {
 
       {colSelected && dataSelected?.length > 0 && (
         <div className="pt-8 space-y-4 w-full">
-          <h2 className="text-2xl font-bold">Selected col: {colSelected}</h2>
+          <span className="text-2xl font-bold">Selected col: {colSelected}</span>
+          <br />
+          <span className="text-2xl font-bold">Selected cell: {cellSelected}</span>
           <Table data={dataSelected} className="md:!w-auto" />
         </div>
       )}
