@@ -34,7 +34,7 @@ export const InputForm: FC<InputFormProps> = ({
           onChange={(e) => handleChange(e)}
           rows={3}
           resize="none"
-          className="md:w-[300px] [&_textarea]:text-center [&_textarea]:!min-h-0 [&_textarea]:py-[50px] [&_textarea:focus]:!pl-[16px] [&_textarea:focus]:!pt-[49px] [&_textarea:focus]:mb-[-1px]"
+          className="md:w-[300px] [&_textarea]:text-center [&_textarea]:py-[50px] [&_textarea:focus]:!pl-[16px] [&_textarea:focus]:!pt-[49px] [&_textarea:focus]:mb-[-1px]"
         ></TextArea>
 
         <Button as="primary" className="mt-4" onClick={handleProcess} disabled={!CSVFileContent}>
