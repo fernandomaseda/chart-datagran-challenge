@@ -1,5 +1,5 @@
 import { SelectItem } from '@components';
-import { useState, ChangeEvent } from 'react';
+import React, { useState, ChangeEvent } from 'react';
 import { InputForm } from '../modules/InputForm';
 import ReactHighcharts from 'react-highcharts';
 import { GeneralLayout } from '@layout';
@@ -78,7 +78,7 @@ const Home = () => {
   };
 
   return (
-    <GeneralLayout>
+    <>
       <InputForm
         state={state}
         setState={setState}
@@ -104,8 +104,12 @@ const Home = () => {
           }}
         />
       )}
-    </GeneralLayout>
+    </>
   );
+};
+
+Home.getLayout = function getLayout(page) {
+  return <GeneralLayout>{page}</GeneralLayout>;
 };
 
 export default Home;

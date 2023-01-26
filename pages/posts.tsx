@@ -65,7 +65,7 @@ const Posts = () => {
   };
 
   return (
-    <GeneralLayout className="md:p-10 w-full">
+    <>
       {data && (
         <Table
           data={data as Record<string, any>[]}
@@ -80,8 +80,12 @@ const Posts = () => {
           <Table data={dataSelected as Record<string, any>[]} className="md:!w-auto" />
         </div>
       )}
-    </GeneralLayout>
+    </>
   );
+};
+
+Posts.getLayout = function getLayout(page) {
+  return <GeneralLayout className="md:p-10 w-full">{page}</GeneralLayout>;
 };
 
 export default Posts;
