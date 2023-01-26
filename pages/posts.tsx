@@ -51,7 +51,6 @@ const Posts = () => {
           return { ...prevState, dataSelected: Array.isArray(data) ? [...data] : [data] };
         });
     } catch (error) {
-      console.log('🚀 ~ file: posts.tsx:51 ~ fetchSelected ~ error', error);
       alert('Could not fetch data');
     }
   };
@@ -64,9 +63,7 @@ const Posts = () => {
     const cellIndex = target.cellIndex;
 
     const colSelected = colls[cellIndex];
-    console.log('🚀 ~ file: posts.tsx:63 ~ handleCellClick ~ colSelected', colSelected);
     const cellSelected = data[rowIndex - 1][colSelected];
-    console.log('🚀 ~ file: posts.tsx:64 ~ handleCellClick ~ cellSelected', cellSelected);
 
     if (colSelected === 'userId') {
       fetchSelected('/posts/' + cellSelected);
