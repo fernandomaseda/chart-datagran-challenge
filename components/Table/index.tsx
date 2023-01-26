@@ -25,9 +25,7 @@ export const Table: FC<TableProps> = ({ className, data, handleCellClick }) => {
       <thead>
         <tr>
           {arrHead.map((text) => (
-            <th tabIndex={0} key={text} onClick={(e) => handleCellClick?.(e)}>
-              {text}
-            </th>
+            <th key={text}>{text}</th>
           ))}
         </tr>
       </thead>
@@ -35,7 +33,9 @@ export const Table: FC<TableProps> = ({ className, data, handleCellClick }) => {
         {data.map((elem, i) => (
           <tr key={`${elem}-${i}`}>
             {arrBody(i).map((text, i) => (
-              <td key={`${text}-${i}`}>{renderItem(text)}</td>
+              <td key={`${text}-${i}`} onClick={(e) => handleCellClick?.(e)} tabIndex={0}>
+                {renderItem(text)}
+              </td>
             ))}
           </tr>
         ))}
